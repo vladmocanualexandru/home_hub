@@ -44,11 +44,11 @@ sudo mkfs.ext4 <drive path>
 ### Mount
 ```
 sudo mkdir /mnt/storage
-sudo mount <drive path>/mnt/storage
+sudo mount <drive path> /mnt/storage
 ```
 In order to have the drive mounted at boot:
 ```
-nano /etc/fstab
+sudo nano /etc/fstab
 ```
 Add the following line at the end:
 ```
@@ -58,6 +58,16 @@ Add the following line at the end:
 SOURCE: https://sh-tsang.medium.com/partitioning-formatting-and-mounting-a-hard-drive-in-linux-ubuntu-18-04-324b7634d1e0
 
 ## Samba
+```
+docker run -it --name samba -p 139:139 -p 445:445 -v <shared folder on host>:<shared folder in container> --restart always -d dperson/samba -p -u "<user>;<password>" -s "share;<shared folder in container>;yes;no"
+ 
+```
+Shared folder will be available accessing:
+```
+http://<host>/share
+```
+
+SOURCE: https://hub.docker.com/r/dperson/samba
 
 ## Postgres
 ```
