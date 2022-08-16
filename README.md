@@ -73,3 +73,13 @@ SOURCE: https://hub.docker.com/r/dperson/samba
 ```
 docker run --name postgres -e POSTGRES_PASSWORD=mysecretpassword -d postgres
 ```
+
+## Adding custom DNS rules for Pi-hole
+Add a .conf file in "/etc/dnsmasq.d" in which the rules are added following the pattern:
+```
+address=/<domain>/<ip>
+```
+```
+sudo nano /etc/dnsmasq.d/91-custom-rules.conf 
+```
+SOURCE: https://blog.mdoff.net/2019/how-add-custom-dns-entries-in-pi-hole/
