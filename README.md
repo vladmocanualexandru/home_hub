@@ -88,6 +88,8 @@ SOURCE: https://blog.mdoff.net/2019/how-add-custom-dns-entries-in-pi-hole/
 
 ### Install 
 
+Zigbee USB dongle must be plugged in.
+
 ```
 docker run -d \
   --name homeassistant \
@@ -96,6 +98,7 @@ docker run -d \
   -e TZ=Europe/Bucharest \
   -v /PATH_TO_YOUR_CONFIG:/config \
   --network=host \
+  --device /dev/ttyUSB0:/dev/ttyUSB0
   ghcr.io/home-assistant/home-assistant:stable
 ```
 
