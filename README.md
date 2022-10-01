@@ -99,7 +99,12 @@ docker run -d \
   ghcr.io/home-assistant/home-assistant:stable
 ```
 
-PATH_TO_YOUR_CONFIG points to location of configuration file
+PATH_TO_YOUR_CONFIG points to location of configuration file (e.g. /etc/home_assistant; "~" is not allowed)
+
+### Open
+```
+http://home.hub:8123
+```
 
 ### Onboarding
 
