@@ -83,3 +83,27 @@ address=/<domain>/<ip>
 sudo nano /etc/dnsmasq.d/91-custom-rules.conf 
 ```
 SOURCE: https://blog.mdoff.net/2019/how-add-custom-dns-entries-in-pi-hole/
+
+## Home Assistant
+
+### Install 
+
+```
+docker run -d \
+  --name homeassistant \
+  --privileged \
+  --restart=unless-stopped \
+  -e TZ=Europe/Bucharest \
+  -v /PATH_TO_YOUR_CONFIG:/config \
+  --network=host \
+  ghcr.io/home-assistant/home-assistant:stable
+```
+
+PATH_TO_YOUR_CONFIG points to location of configuration file
+
+### Onboarding
+
+
+
+
+SOURCE: https://www.home-assistant.io/installation/linux#install-home-assistant-container
