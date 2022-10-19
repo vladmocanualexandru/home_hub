@@ -71,7 +71,7 @@ SOURCE: https://hub.docker.com/r/dperson/samba
 
 ## Postgres
 ```
-docker run --name postgres -e POSTGRES_PASSWORD=mysecretpassword -d postgres
+docker run --restart=unless-stopped --name postgres -p 5432:5432 -e POSTGRES_PASSWORD=<postgres password> -d postgres
 ```
 
 ## Adding custom DNS rules for Pi-hole
