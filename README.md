@@ -102,7 +102,7 @@ docker run -d \
   ghcr.io/home-assistant/home-assistant:stable
 ```
 
-PATH_TO_YOUR_CONFIG points to location of configuration file (e.g. /etc/home_assistant; "~" is not allowed)
+PATH_TO_YOUR_CONFIG points to location of configuration files (must be inside "~", e.g. /home/vlad/home_assistant)
 
 ### Open
 ```
