@@ -109,9 +109,35 @@ PATH_TO_YOUR_CONFIG points to location of configuration files (must be inside "~
 http://home.hub:8123
 ```
 
-### Onboarding
+### Backup
 
+#### Create backup automation
 
+Trigger: When time is equal to 03:00:00
+Action: Create backup
 
+#### Copy backup
+
+```
+#! /bin/bash
+
+unset -v sourceFullPath
+for file in "<HOST HA CONFIG FOLDER>/backups"/*; do
+  [[ $file -nt $sourceFullPath ]] && sourceFullPath=$file
+done
+
+echo $sourceFullPath
+
+destFullPath="<BACKUP DESTINATION>/"$(date "+%Y-%m-%d")".tar"
+
+echo $destFullPath
+
+cp $sourceFullPath $destFullPath
+```
+
+#### Schedule backup copy
+```
+0 1 * * * <PATH TO COPY SH SCRIPT> > <CRONTAB LOG FILE> 2>&1
+```
 
 SOURCE: https://www.home-assistant.io/installation/linux#install-home-assistant-container
