@@ -141,3 +141,11 @@ cp $sourceFullPath $destFullPath
 ```
 
 SOURCE: https://www.home-assistant.io/installation/linux#install-home-assistant-container
+
+## MQTT Broker
+
+```
+docker run --name mqtt -d --restart=unless-stopped -it -p 1883:1883 -p 9001:9001 -v <PATH TO CONFIG FOLDER>:/mosquitto/config eclipse-mosquitto
+```
+
+SOURCE: https://hub.docker.com/_/eclipse-mosquitto
