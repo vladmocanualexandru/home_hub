@@ -171,7 +171,7 @@ Create user account
 mosquitto_passwd -c /mosquitto/config/password.txt hass
 ```
 
-Close shell and restart container
+Close shell, restart container, add broker via HASS MQTT integration.
 
 SOURCE1: https://hub.docker.com/_/eclipse-mosquitto
 SOURCE2: https://www.homeautomationguy.io/docker-tips/configuring-the-mosquitto-mqtt-docker-container-for-use-with-home-assistant/
