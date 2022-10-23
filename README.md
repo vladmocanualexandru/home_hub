@@ -175,3 +175,48 @@ Close shell, restart container, add broker via HASS MQTT integration.
 
 SOURCE1: https://hub.docker.com/_/eclipse-mosquitto
 SOURCE2: https://www.homeautomationguy.io/docker-tips/configuring-the-mosquitto-mqtt-docker-container-for-use-with-home-assistant/
+
+### Register MQTT device
+In order to register and MQTT device, send config message on topic
+```
+/homeassistant/<COMPONENT TYPE>/<OBJECT ID>/config
+```
+e.g.:
+```
+/homeassistant/sensor/laptopVBattery/config
+```
+
+Message payload:
+```
+{
+  "device_class": "<DEVICE CLASS>", 
+  "name": "<NAME OF OBJECT AS IT APPEARS IN HASS>", 
+  "state_topic": "<TOPIC USED TO SEND STATE>", 
+  "value_template": "{{ value_json.<NAME OF THE VALUE FIELD IN PAYLOAD> }}" 
+}
+```
+e.g.:
+```
+{
+  "device_class": "battery", 
+  "name": "LaptopVBattery", 
+  "state_topic": "homeassistant/sensor/laptopV", 
+  "value_template": "{{ value_json.battery}}" 
+}
+```
+
+### Publish message from MQTT device
+Once registered, the device can publish messages on the <TOPIC USED TO SEND STATE> with the following payload:
+```
+{
+  "<NAME OF THE VALUE FIELD IN PAYLOAD>": <VALUE>
+}
+```
+e.g.:
+```
+{
+  "battery": 90
+}
+```
+
+SOURCE: https://www.home-assistant.io/docs/mqtt/discovery/
