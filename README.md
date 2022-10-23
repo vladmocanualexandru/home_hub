@@ -144,8 +144,34 @@ SOURCE: https://www.home-assistant.io/installation/linux#install-home-assistant-
 
 ## MQTT Broker
 
+Create volume folder and inside, create folder "config". Within config, create a file called "mosquitto.conf" with content:
 ```
-docker run --name mqtt -d --restart=unless-stopped -it -p 1883:1883 -v ~/mqtt:/mosquitto eclipse-mosquitto
+persistence true
+persistence_location /mosquitto/data/
+log_dest file /mosquitto/log/mosquitto.log
+listener 1883
+
+## Authentication ##
+#allow_anonymous false
+#password_file /mosquitto/config/password.txt
 ```
 
-SOURCE: https://hub.docker.com/_/eclipse-mosquitto
+Create container
+```
+docker run --name mqtt -d --restart=unless-stopped -it -p 1883:1883 -v <PATH TO VOLUME FOLDER>:/mosquitto eclipse-mosquitto
+```
+
+Open shell inside container
+```
+docker exec -it mqtt /bin/sh
+```
+
+Create user account
+```
+mosquitto_passwd -c /mosquitto/config/password.txt hass
+```
+
+Close shell and restart container
+
+SOURCE1: https://hub.docker.com/_/eclipse-mosquitto
+SOURCE2: https://www.homeautomationguy.io/docker-tips/configuring-the-mosquitto-mqtt-docker-container-for-use-with-home-assistant/
