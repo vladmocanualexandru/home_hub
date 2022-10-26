@@ -179,11 +179,11 @@ SOURCE2: https://www.homeautomationguy.io/docker-tips/configuring-the-mosquitto-
 ### Register MQTT device
 In order to register and MQTT device, send config message on topic
 ```
-/homeassistant/<COMPONENT TYPE>/<OBJECT ID>/config
+homeassistant/<COMPONENT TYPE>/<OBJECT ID>/config
 ```
 e.g.:
 ```
-/homeassistant/sensor/laptopVBattery/config
+homeassistant/sensor/laptopVBattery/config
 ```
 
 Message payload:
@@ -192,6 +192,7 @@ Message payload:
   "device_class": "<DEVICE CLASS>", 
   "name": "<NAME OF OBJECT AS IT APPEARS IN HASS>", 
   "state_topic": "<TOPIC USED TO SEND STATE>", 
+  "unit_of_measurement": "<UNIT OF MEASUREMENT>",
   "value_template": "{{ value_json.<NAME OF THE VALUE FIELD IN PAYLOAD> }}" 
 }
 ```
@@ -200,7 +201,8 @@ e.g.:
 {
   "device_class": "battery", 
   "name": "LaptopVBattery", 
-  "state_topic": "homeassistant/sensor/laptopV", 
+  "state_topic": "homeassistant/sensor/laptopV",
+  "unit_of_measurement": "%",
   "value_template": "{{ value_json.battery}}" 
 }
 ```
