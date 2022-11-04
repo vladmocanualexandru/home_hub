@@ -222,3 +222,14 @@ e.g.:
 ```
 
 SOURCE: https://www.home-assistant.io/docs/mqtt/discovery/
+
+### Configure RF Bridge MQTT device
+Add to configuration.yaml
+```
+mqtt:
+  sensor:
+    - name: "RF-Bridge"
+      state_topic: "tele/rf-bridge/RESULT"
+      value_template: "{{value_json.RfReceived.Data}}"
+      qos: 0
+```
