@@ -177,34 +177,23 @@ SOURCE1: https://hub.docker.com/_/eclipse-mosquitto
 SOURCE2: https://www.homeautomationguy.io/docker-tips/configuring-the-mosquitto-mqtt-docker-container-for-use-with-home-assistant/
 
 ### Register MQTT device
-In order to register and MQTT device, send config message on topic
+In order to register add device config to configuration.yaml
 ```
-homeassistant/<COMPONENT TYPE>/<OBJECT ID>/config
-```
-e.g.:
-```
-homeassistant/sensor/laptopVBattery/config
-```
-
-Message payload:
-```
-{
-  "device_class": "<DEVICE CLASS>", 
-  "name": "<NAME OF OBJECT AS IT APPEARS IN HASS>", 
-  "state_topic": "<TOPIC USED TO SEND STATE>", 
-  "unit_of_measurement": "<UNIT OF MEASUREMENT>",
-  "value_template": "{{ value_json.<NAME OF THE VALUE FIELD IN PAYLOAD> }}" 
-}
+    - name: "<DEVICE_NAME>"
+      state_topic: "<TOPIC USED TO SEND STATE>"
+      value_template: "{{value_json.<PAYLOAD FIELD CONTAINING DATA>}}"
+      qos: 0
+      device_class: "<DEVICE CLASS>"
+      unit_of_measurement: "<UNIT OF MEASUREMENT>"
 ```
 e.g.:
 ```
-{
-  "device_class": "battery", 
-  "name": "LaptopVBattery", 
-  "state_topic": "homeassistant/sensor/laptopV",
-  "unit_of_measurement": "%",
-  "value_template": "{{ value_json.battery}}" 
-}
+    - name: "LaptopV-Battery"
+      state_topic: "homeassistant/in/laptopv-battery"
+      value_template: "{{value_json.battery}}"
+      qos: 0
+      device_class: "battery"
+      unit_of_measurement: "%"
 ```
 
 ### Publish message from MQTT device
