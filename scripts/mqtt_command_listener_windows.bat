@@ -1,0 +1,1 @@
+%MQTT_COMMAND_LISTENER_HOME%\.venv\scripts\python.exe mqtt_command_listener_windows.py
