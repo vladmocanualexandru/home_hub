@@ -1,3 +1,4 @@
 scripts/*.log
 scripts/.venv
+scripts/venv
 scripts/*.out
